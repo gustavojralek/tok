@@ -20,7 +20,7 @@ for (const prop in enigma) {
     let element = $(enigma[prop].id);
     element.on('input', function () {
 
-        let message = {"id": enigma[prop].id, "value": element.val()}
+        let message = {"id": enigma[prop].id, "value": element.val()};
 
         console.log('emit...', message);
         socket.emit('message', message);
