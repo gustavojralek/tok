@@ -3,8 +3,8 @@ var socket = io();
 $('#modal-e1').modal('show');
 
 const enigma = {
-    1: {id: "e1", result: "soberano"},
-    2: {id: "e2", result: "pepe"}
+    1: {id: "e1", result: "soberano", coords: ""},
+    2: {id: "e2", result: "pepe", coords: ""}
 };
 
 let readAndEmit = (enigma) => {
