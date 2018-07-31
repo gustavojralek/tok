@@ -1,0 +1,11 @@
+
+mixin modal(id)
+    .modal.fade(id="pass" + id)
+            .modal-dialog.modal-dialog-centered
+                .modal-content
+                    .modal-body
+                        button.close(type="buttton", data-dismiss="modal", aria-lavel="Close")
+                            span(aria-hidden="true") &times;
+
+                        input.form-control(type="text", id=id, placeholder="Ingrese contraseña" required)
+                        button.btn.btn-outline-dark.btn-lg.btn-block(type="submit") Aceptar
