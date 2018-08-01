@@ -40,6 +40,10 @@ let buttonClick = (enigma) => {
 
             if (input.val().toLowerCase() === enigma[e].result) {
                 console.log("Access Granted");
+                /*width: 4138px;
+                right: 450px;
+                bottom: 1360px;
+                position: relative;*/
             }
             else {
                 console.log("BAD Password");
@@ -51,7 +55,6 @@ let buttonClick = (enigma) => {
 readAndEmit(enigma);
 
 buttonClick(enigma);
-
 
 
 

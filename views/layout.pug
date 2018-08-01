@@ -1,24 +1,28 @@
 doctype html
 html
-  head
-    title= "Tok"
-    link(rel="manifest" href="manifest.json")
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
-    script(src="/js/jquery.min.js")
-    script(src="/js/bootstrap.min.js")
-    script(src="/socket.io/socket.io.js")
+    head
+        title= "Tok"
+        link(rel="manifest" href="manifest.json")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        script(src="/js/jquery.min.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/socket.io/socket.io.js")
 
 
 
-    meta(name="apple-mobile-web-app-capable" content="yes")
-    meta(name="apple-mobile-web-app-status-bar-style" content="black")
-    meta( name="apple-mobile-web-app-title" content="Weather PWA")
-    link( rel="apple-touch-icon" href="images/icons/icon-152x152.png")
-    meta( name="msapplication-TileImage" content="images/icons/icon-144x144.png")
-    meta( name="msapplication-TileColor" content="#2F3BA2")
-  body
-    block content
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black")
+        meta( name="apple-mobile-web-app-title" content="Weather PWA")
+        link( rel="apple-touch-icon" href="images/icons/icon-152x152.png")
+        meta( name="msapplication-TileImage" content="images/icons/icon-144x144.png")
+        meta( name="msapplication-TileColor" content="#2F3BA2")
+    body
+        block content
 
-  script(src='/js/tok.js')
-
+    script(src='/js/tok.js')
+        | if ('serviceWorker' in navigator) {
+        |     window.addEventListener('load', function() {
+        |         navigator.serviceWorker.register('/js/tok.js');
+        |     });
+        | }
