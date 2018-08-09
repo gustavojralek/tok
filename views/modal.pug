@@ -3,9 +3,14 @@ mixin modal(id)
     .modal.fade(id="modal-" + id)
             .modal-dialog.modal-dialog-centered
                 .modal-content
-                    .modal-body
+                    .modal-header
                         button.close(type="buttton", data-dismiss="modal", aria-lavel="Close")
                             span(aria-hidden="true") &times;
 
-                        input.form-control(type="text", id=id, placeholder="Ingrese contraseña" required)
-                        button.btn.btn-outline-dark.btn-lg.btn-block(type="submit") Aceptar
+                    .modal-body
+                        .input-group.mb-3(id="search")
+                            //input( id="pac-input" class="controls" type="text" placeholder="Search Box")
+                            input.form-control(id=id type="text" placeholder="Buscar..." aria-label="Recipient's username" aria-describedby="button-addon2" required)
+                            .input-group-append
+                                button.btn.btn-secondary(type="button" id="button-addon2")
+                                    i.fas.fa-map-marker-alt

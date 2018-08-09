@@ -1,13 +1,65 @@
+@import url(../fonts/fontawesome/css/all.css);
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #000 !important; }
 
 a {
   color: #00B7FF; }
 
-img {
+g#Map {
   width: 100%;
   height: 100%;
+  position: absolute;
   top: 0;
-  right: 0; }
+  left: 0; }
+
+.map {
+  position: relative; }
+  .map .input-group {
+    top: 160px;
+    left: 80px; }
+
+.hearth {
+  animation: latidos 1s infinite;
+  animation-delay: .2s; }
+
+.visited {
+  fill: #ffffff94 !important; }
+
+.arrow {
+  position: absolute;
+  font-size: 60px;
+  color: #3642ffcc; }
+
+.arrow_1 {
+  animation: e1 1.5s infinite; }
+
+.arrow_2 {
+  animation: e2 1.5s infinite; }
+
+@keyframes latidos {
+  from {
+    transform: none; }
+  50% {
+    fill: #ff7122;
+    transform: scale(0.997); }
+  to {
+    transform: none; } }
+
+@keyframes e1 {
+  0% {
+    transform: translateY(5px) translateX(5px) rotate(-80deg);
+    opacity: 0; }
+  100% {
+    transform: translateY(-100px) translateX(-100px) rotate(-80deg);
+    opacity: .8; } }
+
+@keyframes e2 {
+  0% {
+    transform: translateY(5px) translateX(5px) rotate(68deg);
+    opacity: 0; }
+  100% {
+    transform: translateY(40px) translateX(85px) rotate(69deg);
+    opacity: .8; } }
 
 /*# sourceMappingURL=style.css.map */

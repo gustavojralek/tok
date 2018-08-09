@@ -13,7 +13,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3001');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -30,6 +30,9 @@ io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('message', function(msg){
         io.emit('message', msg);
+    });
+    socket.on('preset', function(msg){
+        io.emit('preset', msg);
     });
 });
 
