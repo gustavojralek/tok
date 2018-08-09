@@ -41,6 +41,13 @@ let buttonClick = (enigma) => {
         if (!!input.val() && input.val().toLowerCase() === data.result) {
             console.log("Access Granted");
 
+            $("#bruju-loading").fadeIn();
+            setTimeout(function(){
+                $("#bruju-loading").fadeOut();
+            }, 2000);
+
+
+
             let m = $('#modal-' + data.id),
                 item = $(data.item_selector);
 

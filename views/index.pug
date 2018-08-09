@@ -2,6 +2,11 @@ extends layout
 include modal
 
 block content
+    div(id="bruju-loading")
+        .brujula
+            img(src="images/brujula-01.svg")
+
+        p.align-middle Buscando...
 
     .map
         //--
@@ -14,6 +19,6 @@ block content
 
         include ../public/images/map.svg
 
-    +modal("input_1", "Ingrese contraseña")
+    +modal("input_1", "Ingrese contraseña", "fa-key")
     +modal("input_2")
     +modal("input_3")
