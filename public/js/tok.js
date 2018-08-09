@@ -29,6 +29,13 @@ let readAndEmit = (enigma) => {
     }
 };
 
+let loading = (time) => {
+    $("#bruju-loading").fadeIn();
+    setTimeout(function(){
+        $("#bruju-loading").fadeOut();
+    }, time);
+};
+
 let buttonClick = (enigma) => {
     socket.on('preset', function (id) {
         let i = parseInt(id);
@@ -41,11 +48,7 @@ let buttonClick = (enigma) => {
         if (!!input.val() && input.val().toLowerCase() === data.result) {
             console.log("Access Granted");
 
-            $("#bruju-loading").fadeIn();
-            setTimeout(function(){
-                $("#bruju-loading").fadeOut();
-            }, 2000);
-
+            loading(5000);
 
 
             let m = $('#modal-' + data.id),
@@ -112,9 +115,14 @@ $(document).ready(function () {
 
 
     let barco = $("#Barquito g path"),
-        e1 = $('#modal-input_1');
+        e1 = $('#modal-input_1'),
+        brujumap = $('#brujumap');
 
     e1.modal('show');
+
+    brujumap.on('click', function () {
+        loading(5000);
+    });
 
     barco.addClass("hearth");
 
