@@ -1,9 +1,11 @@
 
-mixin modal(id)
+mixin modal(id, title)
     .modal.fade(id="modal-" + id)
             .modal-dialog.modal-dialog-centered
                 .modal-content
                     .modal-header
+                        if title
+                            h5.modal-title= title
                         button.close(type="buttton", data-dismiss="modal", aria-lavel="Close")
                             span(aria-hidden="true") &times;
 
@@ -14,3 +16,4 @@ mixin modal(id)
                             .input-group-append
                                 button.btn.btn-secondary(type="button" id="button-addon2")
                                     i.fas.fa-map-marker-alt
+                            .invalid-feedback "Contraseña incorrecta"

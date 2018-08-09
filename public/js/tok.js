@@ -74,6 +74,8 @@ let buttonClick = (enigma) => {
 
         }
         else {
+            input.css("border-color", "red");
+            $(".invalid-feedback").fadeIn();
             console.log("BAD Password");
         }
 
