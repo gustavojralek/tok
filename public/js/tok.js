@@ -142,7 +142,7 @@ $(document).ready(function () {
     e1.modal('show');
 
     brujumap.on('click', function () {
-        console.log("emit::recalculando...")
+        console.log("emit::recalculando...");
         socket.emit('recalculando', "azar1");
 
     });
