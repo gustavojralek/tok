@@ -51,6 +51,16 @@ let readAndEmit = (enigma) => {
             socket.emit('select', (i + 1));
         });
 
+        let e = prop;
+        let modalElement = $('#modal-' + enigma[e].id);
+        let button = modalElement.find("button");
+
+        button.on("click", function () {
+            console.log('emit::preset...', e);
+            socket.emit('preset', e);
+        });
+
+
     }
 };
 
@@ -114,7 +124,7 @@ let buttonClick = (enigma) => {
 
     });
 
-    for (let e in enigma) {
+ /*   for (let e in enigma) {
 
         let modalElement = $('#modal-' + enigma[e].id);
         let button = modalElement.find("button");
@@ -125,7 +135,7 @@ let buttonClick = (enigma) => {
         });
 
 
-    }
+    }*/
 };
 
 
