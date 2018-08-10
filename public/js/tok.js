@@ -11,32 +11,44 @@ const enigma = {
 
 };
 
+
+
 let readAndEmit = (enigma) => {
+    socket.on('select', function (idd) {
+        console.log("reading::select...");
+        $('#modal-input_' + idd).modal('show');
+
+    });
+    socket.on('recalculando', function (azarId) {
+        console.log("reading::recalculando...");
+        loading(5000, null, "Recalculando...");
+    });
+    socket.on('message', function (data) {
+        //console.log("reading... ", data);
+        console.log("reading::message...");
+        $('#' + data.id).val(data.value);
+    });
+
+    buttonClick(enigma);
+
     for (let prop in enigma) {
-
-        socket.on('message', function (data) {
-            //console.log("reading... ", data);
-
-            $('#' + data.id).val(data.value);
-        });
 
         let element = $('#' + enigma[prop].id);
         element.on('input', function () {
-
             let message = {"id": enigma[prop].id, "value": element.val()};
-
             //console.log('emit...', message);
             socket.emit('message', message);
             return false;
         });
 
-        socket.on('select', function (idd) {
-            $('#modal-input_' + idd).modal('show');
+        let enig = $(enigma[prop].el);
+        let i = parseInt(prop);
 
-        });
+        enig.css("cursor", "pointer");
 
-        socket.on('recalculando', function (azarId) {
-            loading(5000, null, "Recalculando...");
+        enig.on('click', function () {
+            console.log("emit::select", (i+1));
+            socket.emit('select', (i + 1));
         });
 
     }
@@ -47,7 +59,8 @@ let loading = (time, fn, text) => {
     $("#bruju-loading").fadeIn();
     setTimeout(function () {
         $("#bruju-loading").fadeOut();
-        fn();
+        if (fn)
+            fn();
     }, time);
 };
 
@@ -56,7 +69,7 @@ let buttonClick = (enigma) => {
         let i = parseInt(id);
         let data = enigma[i];
 
-        console.log("reading... ", data);
+        console.log("reading::preset", data);
 
         let input = $('#' + data.id);
 
@@ -83,16 +96,6 @@ let buttonClick = (enigma) => {
                     top = hearth.first().position().top;
 
                 $("#arrow").css("top", top).css("left", left).addClass("arrow_" + i).removeClass("arrow_" + (i - 1));
-
-                let element = $(data.el);
-                element.css("cursor", "pointer");
-                element.on('click', function () {
-                    console.log("click......");
-                    socket.emit('select', (i + 1));
-
-
-
-                });
 
                 hearth.removeClass("hearth").addClass("visited");
                 item.addClass("hearth");
@@ -131,8 +134,6 @@ $(document).ready(function () {
 
     readAndEmit(enigma);
 
-    buttonClick(enigma);
-
 
     let barco = $("#Barquito g path"),
         e1 = $('#modal-input_1'),
@@ -141,6 +142,7 @@ $(document).ready(function () {
     e1.modal('show');
 
     brujumap.on('click', function () {
+        console.log("emit::recalculando...")
         socket.emit('recalculando', "azar1");
 
     });
