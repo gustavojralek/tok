@@ -93,7 +93,7 @@ g#Map {
   animation: e1 1.5s infinite; }
 
 .arrow_2 {
-  animation: e2 1.5s infinite; }
+  animation: e2 2s infinite; }
 
 @keyframes latidos {
   from {
@@ -114,10 +114,10 @@ g#Map {
 
 @keyframes e2 {
   0% {
-    transform: translateY(5px) translateX(5px) rotate(68deg);
+    transform: translateY(-30px) translateX(5px) rotate(16deg);
     opacity: 0; }
   100% {
-    transform: translateY(40px) translateX(85px) rotate(69deg);
+    transform: translateY(-189px) translateX(530px) rotate(16deg);
     opacity: .8; } }
 
 /*# sourceMappingURL=style.css.map */

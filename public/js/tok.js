@@ -3,8 +3,12 @@ var socket = io();
 
 const enigma = {
     1: {id: "input_1", result: "soberano", item_selector: "g#Enigma_1 g path", el: "#e1"},
-    2: {id: "input_2", result: "pepe", item_selector: "g#e2 path", el: "#e2"},
-    3: {id: "input_3", result: "ramon", item_selector: "g#Mountains path", el: "#mountains"}
+    2: {id: "input_2", result: "creacion", item_selector: "g#Arboles path", el: "#Arboles"},
+    3: {id: "input_3", result: "necesidad", item_selector: "g#Rocks g path", el: "#Rocks"},
+    4: {id: "input_4", result: "sacrificio", item_selector: "g#cueva path", el: "#cueva"},
+    5: {id: "input_5", result: "ayuda", item_selector: "g#Mountains path", el: "#Mountains"},
+    6: {id: "input_6", result: "", item_selector: "g#e2 path", el: "#e2"}
+
 };
 
 let readAndEmit = (enigma) => {
@@ -26,13 +30,24 @@ let readAndEmit = (enigma) => {
             return false;
         });
 
+        socket.on('select', function (idd) {
+            $('#modal-input_' + idd).modal('show');
+
+        });
+
+        socket.on('recalculando', function (azarId) {
+            loading(5000, null, "Recalculando...");
+        });
+
     }
 };
 
-let loading = (time) => {
+let loading = (time, fn, text) => {
+    $("#bruju-loading p ").html(text);
     $("#bruju-loading").fadeIn();
-    setTimeout(function(){
+    setTimeout(function () {
         $("#bruju-loading").fadeOut();
+        fn();
     }, time);
 };
 
@@ -48,7 +63,7 @@ let buttonClick = (enigma) => {
         if (!!input.val() && input.val().toLowerCase() === data.result) {
             console.log("Access Granted");
 
-            loading(5000);
+            $(".invalid-feedback").fadeOut();
 
 
             let m = $('#modal-' + data.id),
@@ -56,30 +71,35 @@ let buttonClick = (enigma) => {
 
             m.modal('hide');
 
-            if(i < 2) {
-                let arrow = "<i id=\"arrow\" class=\"fas fa-location-arrow arrow pepe\"></i>";
-                $('body').append(arrow);
-            }
+            let searched = (i) => {
 
-            let hearth = $(".hearth"),
+                if (i < 2) {
+                    let arrow = "<i id=\"arrow\" class=\"fas fa-location-arrow arrow pepe\"></i>";
+                    $('body').append(arrow);
+                }
 
-                left = hearth.first().position().left,
-                top = hearth.first().position().top;
+                let hearth = $(".hearth"),
+                    left = hearth.first().position().left,
+                    top = hearth.first().position().top;
 
-            $("#arrow").css("top", top).css("left", left).addClass("arrow_" + i).removeClass("arrow_" + (i-1));
+                $("#arrow").css("top", top).css("left", left).addClass("arrow_" + i).removeClass("arrow_" + (i - 1));
+
+                let element = $(data.el);
+                element.css("cursor", "pointer");
+                element.on('click', function () {
+                    console.log("click......");
+                    socket.emit('select', (i + 1));
 
 
-            let element= $(data.el);
-            element.css("cursor", "pointer");
-            element.on('click', function () {
-                console.log("click......");
-                $('#modal-input_' + (i+1) ).modal('show');
-            });
 
-            hearth.removeClass("hearth").addClass("visited");
+                });
 
-            item.addClass("hearth");
+                hearth.removeClass("hearth").addClass("visited");
+                item.addClass("hearth");
 
+            };
+
+            loading(2000, searched(i), "Buscando...");
 
 
         }
@@ -121,11 +141,11 @@ $(document).ready(function () {
     e1.modal('show');
 
     brujumap.on('click', function () {
-        loading(5000);
+        socket.emit('recalculando', "azar1");
+
     });
 
     barco.addClass("hearth");
-
 
 
 });
