@@ -1,6 +1,5 @@
 var socket = io();
 
-
 const enigma = {
     1: {id: "input_1", result: "soberano", item_selector: "g#Enigma_1 g path", el: "#e1"},
     2: {id: "input_2", result: "creacion", item_selector: "g#Arboles path", el: "#Arboles"},
@@ -10,7 +9,6 @@ const enigma = {
     6: {id: "input_6", result: "", item_selector: "g#e2 path", el: "#e2"}
 
 };
-
 
 
 let readAndEmit = (enigma) => {
@@ -36,7 +34,7 @@ let readAndEmit = (enigma) => {
         let element = $('#' + enigma[prop].id);
         element.on('input', function () {
             let message = {"id": enigma[prop].id, "value": element.val()};
-            //console.log('emit...', message);
+            console.log('emit::input ', message);
             socket.emit('message', message);
             return false;
         });
@@ -47,9 +45,11 @@ let readAndEmit = (enigma) => {
         enig.css("cursor", "pointer");
 
         enig.on('click', function () {
-            console.log("emit::select", (i+1));
+            console.log("emit::select", (i + 1));
             socket.emit('select', (i + 1));
+            return false;
         });
+
 
         let e = prop;
         let modalElement = $('#modal-' + enigma[e].id);
@@ -58,10 +58,17 @@ let readAndEmit = (enigma) => {
         button.on("click", function () {
             console.log('emit::preset...', e);
             socket.emit('preset', e);
+            return false;
         });
 
 
     }
+
+    $(enigma[5].el).on('click', function () {
+        console.log('emit::preset::lastone', 6);
+        socket.emit('preset', 6);
+        return false;
+    })
 };
 
 let loading = (time, fn, text) => {
@@ -83,11 +90,10 @@ let buttonClick = (enigma) => {
 
         let input = $('#' + data.id);
 
-        if (!!input.val() && input.val().toLowerCase() === data.result) {
+        if ((!!input.val() && input.val().toLowerCase() === data.result) || i === 6) {
             console.log("Access Granted");
 
             $(".invalid-feedback").fadeOut();
-
 
             let m = $('#modal-' + data.id),
                 item = $(data.item_selector);
@@ -124,18 +130,72 @@ let buttonClick = (enigma) => {
 
     });
 
- /*   for (let e in enigma) {
 
-        let modalElement = $('#modal-' + enigma[e].id);
-        let button = modalElement.find("button");
+};
 
-        button.on("click", function () {
-            console.log('emit::preset...', e);
-            socket.emit('preset', e);
+let vers = () => {
+    console.log("versiculos constructor");
+    let versiculos = {
+        1: {el: "v1", cita: "Salmos 46", word: "Soberano", ver: "Quédense quietos, reconozcan que yo soy DIOS"},
+        2: {
+            el: "v2",
+            cita: "Filipenses 1:6",
+            word: "Creación",
+            ver: "Estoy convencido de esto: el que comenzó tan buena obra en ustedes, la irá perfeccionando hasta el día de Cristo Jesús"
+        },
+        3: {
+            el: "v3",
+            cita: "Proverbios 17:17",
+            word: "Necesidad",
+            ver: "En todo tiempo ama el amigo, y es como un hermano en tiempo de angustia"
+        },
+        4: {
+            el: "v4",
+            cita: "Juan 14:6",
+            word: "Sacrificio",
+            ver: "Yo soy el camino, y la verdad y la vida; nadie viene al Padre, sino por mí"
+        },
+        5: {
+            el: "v5",
+            cita: "Hechos 1:8",
+            word: "Ayuda",
+            ver: "Pero, cuando venga el Espíritu Santo sobre ustedes, recibirán poder y serán mis testigos... hasta los confines de la tierra"
+        }
+    };
+
+    socket.on('versiculo', function (id) {
+        let e = versiculos[id].el;
+        console.log("reading::versiculo...");
+
+        let m = $("#modal-" + e);
+        m.find(".modal-body").html(versiculos[id].ver + "<i class=\"far fa-save saveVer\"></i>");
+        m.modal('show');
+
+        $(".saveVer").on('click', function () {
+            socket.emit("vclose", e);
         });
 
+    });
 
-    }*/
+    socket.on('vclose', function (e) {
+        $("#modal-" + e).modal('hide');
+    });
+
+    let versoClick = (id) => {
+        let e = versiculos[id].el;
+        $("#" + e).on("click", function () {
+            console.log("click verso", e, "emit::versiculo");
+            socket.emit("versiculo", id);
+        })
+    };
+
+    versoClick(1);
+    versoClick(2);
+    versoClick(3);
+    versoClick(4);
+    versoClick(5);
+
+
 };
 
 
@@ -143,6 +203,7 @@ $(document).ready(function () {
 
 
     readAndEmit(enigma);
+    vers();
 
 
     let barco = $("#Barquito g path"),
@@ -154,6 +215,7 @@ $(document).ready(function () {
     brujumap.on('click', function () {
         console.log("emit::recalculando...");
         socket.emit('recalculando', "azar1");
+        return false;
 
     });
 

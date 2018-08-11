@@ -29,6 +29,22 @@ g#Map
 .visited
   fill: #ffffff94 !important
 
+.bible
+  font-size: 60px
+  position: fixed
+  right: 100px
+  bottom: 5px
+  a
+    color: #352616
+
+.saveVer
+  display: block
+  font-size: 40px
+  text-align: right
+  margin: 10px 30px 0 0
+  &:hover
+    color: #00B7FF
+
 .arrow
   position: absolute
   font-size: 60px
@@ -41,7 +57,17 @@ g#Map
 .arrow_2
   animation: e2 2s infinite
 
+.arrow_3
+  animation: e3 2s infinite
 
+.arrow_4
+  animation: e4 2s infinite
+
+.arrow_5
+  animation: e5 2s infinite
+
+.arrow_6
+  animation: e6 2s infinite
 
 @keyframes latidos
   from
@@ -71,10 +97,44 @@ g#Map
     opacity: 0
 
   100%
-    transform: translateY(-189px) translateX(530px) rotate(16deg) //translateY(-80px) translateX(150px) rotate(16deg)
+    transform: translateY(-95px) translateX(230px) rotate(16deg) //translateY(-80px) translateX(150px) rotate(16deg)
     //transform: translateY(40px) translateX(85px) rotate(69deg)
     opacity: .8
 
+@keyframes e3
+  0%
+    transform: translateY(5px) translateX(5px) rotate(-160deg)
+    opacity: 0
 
+  100%
+    transform: translateY(47px) translateX(-153px)  rotate(-156deg)
+    opacity: .8
+
+@keyframes e4
+  0%
+    transform: translateY(-57px) translateX(-13px) rotate(-17deg)
+    opacity: 0
+
+  100%
+    transform: translateY(-107px) translateX(7px) rotate(-17deg)
+    opacity: .8
+
+@keyframes e5
+  0%
+    transform: translateY(-15px) translateX(-75px) rotate(-220deg)
+    opacity: 0
+
+  100%
+    transform: translateY(75px) translateX(-95px) rotate(-220deg)
+    opacity: .8
+
+@keyframes e6
+  0%
+    transform: translateY(29px) translateX(15px) rotate(-204deg)
+    opacity: 0
+
+  100%
+    transform: translateY(90px) translateX(0px) rotate(-204deg)
+    opacity: .8
 
 

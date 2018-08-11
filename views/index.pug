@@ -9,14 +9,6 @@ block content
         p.align-middle Buscando...
 
     .map
-        //--
-            .input-group.position-absolute.col-md-3.mb-3(id="search")
-                //input( id="pac-input" class="controls" type="text" placeholder="Search Box")
-                input.form-control(type="text" placeholder="Buscar..." aria-label="Recipient's username" aria-describedby="button-addon2")
-                .input-group-append
-                    button.btn.btn-secondary(type="button" id="button-addon2")
-                        i.fas.fa-map-marker-alt
-
         include ../public/images/map.svg
 
     +modal("input_1", "Ingrese contraseña", "fa-key")
@@ -24,3 +16,19 @@ block content
     +modal("input_3")
     +modal("input_4")
     +modal("input_5")
+
+    .bible
+        a(href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+            i.fas.fa-book
+        .dropdown-menu(aria-labelledby="dropdownMenuLink")
+            a.dropdown-item(id="v1") Salmos 46:10
+            a.dropdown-item(id="v2") Filipenses 1:6
+            a.dropdown-item(id="v3") Proverbios 17:17
+            a.dropdown-item(id="v4") Juan 14:6
+            a.dropdown-item(id="v5") Hechos 1:8
+
+    +modal("v1", "Soberano | Salmos 46:10")
+    +modal("v2", "Creación | Filipenses 1:6")
+    +modal("v3", "Necesidad | Proverbios 17:17")
+    +modal("v4", "Sacrificio | Juan 14:6")
+    +modal("v5", "Ayuda | Hechos 1:8")
