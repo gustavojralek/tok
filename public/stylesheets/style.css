@@ -71,6 +71,25 @@ g#Map {
   top: 0;
   left: 0; }
 
+input.form-control {
+  height: 70px !important;
+  font-size: 38px !important; }
+
+.invalid-feedback {
+  font-size: 18px !important; }
+
+.btn .btn-secondary i {
+  font-size: 46px; }
+
+#search {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#search-button {
+  width: 200px;
+  display: block; }
+
 .map {
   position: relative; }
   .map .input-group {

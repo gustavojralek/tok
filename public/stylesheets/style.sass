@@ -15,6 +15,28 @@ g#Map
   top: 0
   left: 0
 
+input.form-control
+  height: 70px !important
+  font-size: 38px !important
+
+
+.invalid-feedback
+  font-size: 18px !important
+
+.btn .btn-secondary
+  i
+    font-size: 46px
+
+
+#search
+  display: flex
+  align-items: center
+  justify-content: center
+
+#search-button
+  width: 200px
+  display: block
+
 .map
 
   position: relative
@@ -50,7 +72,6 @@ g#Map
   font-size: 60px
   color: #3642ffcc
 
-
 .arrow_1
   animation: e1 1.5s infinite
 
@@ -78,26 +99,25 @@ g#Map
   to
     transform: none
 
-
-
 @keyframes e1
   0%
     transform: translateY(5px) translateX(5px) rotate(-80deg)
     opacity: 0
 
   100%
-    transform: translateY(-100px) translateX(-100px)  rotate(-80deg)
+    transform: translateY(-100px) translateX(-100px) rotate(-80deg)
     opacity: .8
 
 @keyframes e2
   0%
     transform: translateY(-30px) translateX(5px) rotate(16deg)
 
-     //translateY(5px) translateX(5px) rotate(68deg)
+    //translateY(5px) translateX(5px) rotate(68deg)
     opacity: 0
 
   100%
-    transform: translateY(-95px) translateX(230px) rotate(16deg) //translateY(-80px) translateX(150px) rotate(16deg)
+    transform: translateY(-95px) translateX(230px) rotate(16deg)
+    //translateY(-80px) translateX(150px) rotate(16deg)
     //transform: translateY(40px) translateX(85px) rotate(69deg)
     opacity: .8
 
@@ -107,7 +127,7 @@ g#Map
     opacity: 0
 
   100%
-    transform: translateY(47px) translateX(-153px)  rotate(-156deg)
+    transform: translateY(47px) translateX(-153px) rotate(-156deg)
     opacity: .8
 
 @keyframes e4

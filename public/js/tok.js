@@ -53,7 +53,7 @@ let readAndEmit = (enigma) => {
 
         let e = prop;
         let modalElement = $('#modal-' + enigma[e].id);
-        let button = modalElement.find("button");
+        let button = modalElement.find("a");
 
         button.on("click", function () {
             console.log('emit::preset...', e);

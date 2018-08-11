@@ -10,10 +10,13 @@ mixin modal(id, title, icon)
                             span(aria-hidden="true") &times;
 
                     .modal-body
-                        .input-group.mb-3(id="search")
+                        .input-group.mb-3.input-group-lg(id="search")
                             //input( id="pac-input" class="controls" type="text" placeholder="Search Box")
-                            input.form-control(id=id type="text" placeholder="Buscar..." aria-label="Recipient's username" aria-describedby="button-addon2" required)
+                            input.form-control(id=id type="text" placeholder="Contraseña..." aria-label="Recipient's username" aria-describedby="button-addon2" required)
                             .input-group-append
-                                button.btn.btn-secondary(type="button" id="button-addon2")
+                                a
+                                    img(id="search-button" src="/images/brujula-01.svg")
+
+                                //button.btn.btn-secondary(type="button" id="button-addon2")
                                     i.fas(class = icon || "fa-map-marker-alt")
                             .invalid-feedback "Contraseña incorrecta"
