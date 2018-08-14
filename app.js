@@ -18,12 +18,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'tok.iglesiadesaavedra.com'),
-  dest: path.join(__dirname, 'tok.iglesiadesaavedra.com'),
+  src: path.join(__dirname, 'tok.iglesiadesaavedra.com/public'),
+  dest: path.join(__dirname, 'tok.iglesiadesaavedra.com/public'),
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'tok.iglesiadesaavedra.com')));
+app.use(express.static(path.join(__dirname, 'tok.iglesiadesaavedra.com/public')));
 
 app.use('/', indexRouter);
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
